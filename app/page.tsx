@@ -17,6 +17,7 @@ import {
   CreditCard,
   Plus
 } from 'lucide-react';
+import ToolsMenu from '@/components/ToolsMenu';
 
 // Mock data
 const mockUser = {
@@ -241,6 +242,9 @@ export default function HypeCutDashboard() {
           </button>
         </div>
       </main>
+
+      {/* Tools Menu */}
+      <ToolsMenu />
 
       {/* Footer */}
       <footer className="border-t border-zinc-800 mt-8 py-4">
