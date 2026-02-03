@@ -91,12 +91,13 @@ export default function ToolsMenu() {
 
   return (
     <>
-      {/* Menu Button */}
+      {/* Menu Button - Mobile Optimized */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        className="fixed bottom-4 right-4 z-[9999] w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-black hover:scale-110 transition-transform"
+        style={{ position: 'fixed', bottom: '16px', right: '16px' }}
       >
-        <Menu className="w-6 h-6 text-white" />
+        <Menu className="w-7 h-7 text-white" />
       </button>
 
       {/* Overlay */}

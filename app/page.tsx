@@ -18,6 +18,7 @@ import {
   Plus
 } from 'lucide-react';
 import ToolsMenu from '@/components/ToolsMenu';
+import MobileNav from '@/components/MobileNav';
 
 // Mock data
 const mockUser = {
@@ -75,6 +76,7 @@ export default function HypeCutDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-purple-950">
+      <MobileNav />
       {/* Header */}
       <header className="bg-zinc-900/50 backdrop-blur border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
