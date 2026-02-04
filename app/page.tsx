@@ -11,14 +11,12 @@ import {
   Zap,
   Play,
   BarChart3,
-  Settings,
   Sparkles,
   Target,
   CreditCard,
   Plus
 } from 'lucide-react';
-import ToolsMenu from '@/components/ToolsMenu';
-import MobileNav from '@/components/MobileNav';
+import Sidebar from '@/components/Sidebar';
 
 // Mock data
 const mockUser = {
@@ -68,27 +66,34 @@ const mockTrendingTopics = [
   { topic: "AI Productivity Tools", volume: "2.1M", growth: "+45%" },
   { topic: "Remote Work Tips", volume: "1.8M", growth: "+23%" },
   { topic: "Personal Finance", volume: "3.2M", growth: "+67%" },
+  { topic: "Digital Marketing", volume: "1.5M", growth: "+34%" },
   { topic: "Side Hustle Ideas", volume: "2.7M", growth: "+89%" },
 ];
 
 export default function HypeCutDashboard() {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-purple-950">
-      <MobileNav />
+      <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+      
+      {/* Main Content with Sidebar Offset */}
+      <div className={`transition-all duration-300 ${isCollapsed ? 'ml-16' : 'ml-64'}`}>
+      
       {/* Header */}
       <header className="bg-zinc-900/50 backdrop-blur border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                <Video className="w-5 h-5 text-white" />
-              </div>
-              <div>
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                  <Video className="w-4 h-4 text-white" />
+                </div>
                 <h1 className="text-xl font-bold text-white">HypeCut Producer</h1>
-                <p className="text-xs text-zinc-400">AI Video Creation Platform</p>
               </div>
+              <span className="hidden sm:inline text-xs text-zinc-500 bg-zinc-800 px-2 py-1 rounded">
+                Dashboard
+              </span>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -167,7 +172,7 @@ export default function HypeCutDashboard() {
               <div className="p-4">
                 <div className="space-y-4">
                   {mockRecentVideos.map((video) => (
-                    <div key={video.id} className="flex items-center space-x-4 p-3 bg-zinc-800/50 rounded-lg">
+                    <div key={video.id} className="flex items-center space-x-4 p-3 bg-zinc-800/50 rounded-lg hover:bg-zinc-800/70 transition-colors cursor-pointer">
                       <img src={video.thumbnail} alt={video.title} className="w-24 h-14 object-cover rounded" />
                       <div className="flex-1 min-w-0">
                         <h3 className="text-white font-medium text-sm truncate">{video.title}</h3>
@@ -245,15 +250,14 @@ export default function HypeCutDashboard() {
         </div>
       </main>
 
-      {/* Tools Menu */}
-      <ToolsMenu />
-
       {/* Footer */}
       <footer className="border-t border-zinc-800 mt-8 py-4">
         <div className="max-w-7xl mx-auto px-4 text-center text-xs text-zinc-500">
           <p>HypeCut Producer v1.0.0 • Built with AI</p>
         </div>
       </footer>
+      
+      </div>{/* End of sidebar offset */}
     </div>
   );
 }
